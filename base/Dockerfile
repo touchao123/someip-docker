@@ -17,7 +17,7 @@ RUN     \
 #		asciidoc \
 #		doxygen \
 	 	# libsystemd-dev \
-		# vim \
+		vim \
 		# iproute2 \
 	 	# traceroute \
 		curl \

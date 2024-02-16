@@ -1,4 +1,4 @@
-FROM chao123/someip-core:latest
+FROM chao123/someip-core
 
 ARG USERNAME=someip
 ARG PASSWORD=someip
