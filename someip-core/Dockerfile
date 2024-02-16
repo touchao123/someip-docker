@@ -11,5 +11,5 @@ RUN cd /root/vsomeip-build && \
 
 
 # COPY vsomeip /root/vsomeip-build/vsomeip/
-COPY build-someip-core.sh /root/vsomeip-build/
+COPY someip-core/build-someip-core.sh /root/vsomeip-build/
 RUN cd /root/vsomeip-build && sh ./build-someip-core.sh
