@@ -13,7 +13,10 @@ jobs:
      
     runs-on: ubuntu-latest
     # runs-on: [self-hosted, linux, x64]
-
+    
+    environment:
+      name: someip-docker
+      
     steps:
     - name: Check out the repo
       uses: actions/checkout@v4
