@@ -14,9 +14,16 @@ jobs:
     # runs-on: [self-hosted, linux, x64]
 
     steps:
+    - name: Show files changed
+      uses: docker/login-action@v3.0.0
+      with:
+        username: touchao123@126.com
+        password: csvt4Years
+    
     - uses: actions/checkout@v3
     - name: Build the base someip Docker image
       run: docker build . --file base/Dockerfile --tag someip-base:lastest
+      run: docker push someip-base:lastest
 
     - name: Build the someip-core Docker image
       run: docker build . --file someip-core/Dockerfile --tag someip-core:lastest
