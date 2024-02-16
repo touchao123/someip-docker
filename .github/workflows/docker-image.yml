@@ -10,10 +10,16 @@ jobs:
 
   build:
 
-    # runs-on: ubuntu-latest
-    runs-on: [self-hosted, linux, x64]
+    runs-on: ubuntu-latest
+    # runs-on: [self-hosted, linux, x64]
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file base/Dockerfile --tag my-image-name:$(date +%s)
+    - name: Build the base someip Docker image
+      run: docker build . --file base/Dockerfile --tag someip-base:$(date +%s)
+
+    - name: Build the someip-core Docker image
+      run: docker build . --file someip-core/Dockerfile --tag someip-core:$(date +%s)
+    
+    - name: Build the someip Docker image
+      run: docker build . --file someip/Dockerfile --tag someip:$(date +%s)
