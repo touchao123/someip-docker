@@ -1,0 +1,53 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+    
+  build:
+     
+    runs-on: ubuntu-latest
+    # runs-on: [self-hosted, linux, x64]
+    
+    environment:
+      name: someip-docker
+      
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v4
+    
+    - name: Log in to Docker Hub
+      uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push someip-BASE Docker image
+      uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+      with:
+        context: .
+        file: ./base/Dockerfile
+        push: false
+        tags: someip-base:lastest
+
+    - name: Build and push someip-CORE Docker image
+      uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+      with:
+        context: .
+        file: ./someip-core/Dockerfile
+        push: false
+        tags: someip-core:lastest
+
+    - name: Build and push someip-USER Docker image
+      uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+      with:
+        context: .
+        file: ./someip/Dockerfile
+        push: false
+        tags: someip:lastest
+        
