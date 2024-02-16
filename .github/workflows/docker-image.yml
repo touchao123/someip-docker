@@ -32,7 +32,7 @@ jobs:
       with:
         context: .
         file: ./base/Dockerfile
-        push: true
+        push: false
         tags: someip-base:lastest
 
     - name: Build and push someip-CORE Docker image
@@ -40,7 +40,7 @@ jobs:
       with:
         context: .
         file: ./someip-core/Dockerfile
-        push: true
+        push: false
         tags: someip-core:lastest
 
     - name: Build and push someip-USER Docker image
@@ -48,6 +48,6 @@ jobs:
       with:
         context: .
         file: ./someip/Dockerfile
-        push: true
+        push: false
         tags: someip:lastest
         
