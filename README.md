@@ -29,18 +29,37 @@ So how do you get this template to work for your project? It is easier than you 
 Use git to clone this repository into your computer.
 
 ```
-git clone https://gitlab.com/kopino4-templates/readme-template
+git clone https://github.com/touchao123/someip-docker.git
 ```
 
 ### Usage
 
-Use the well known command to copy the template
-
+1> Trail the pre-built images as this:
 ```bash
-# Copy the content
-CTRL + C
-
-# Pase into your project
-CTRL + V
+    docker pull chao123/someip
+    docker pull chao123/someip-base
+    docker pull chao123/someip
 ```
+2> Run them with the facility of scripts
+
+# Copy the content
+```bash
+    cd run-script/
+    ./create-someip-testenv
+```
+# Here two containers come to you, one is named server the other is named client.
+# Login the targets by any of the 'vcc' or 'vss', they are responding to the client and server.
+#
+```bash
+    ./vcc
+```
+# or
+```bash
+    ./vss
+```
+# Destroy both containers by 'delete-someip-testenv'
+```bash
+    ./delete-someip-testenv
+```
+That's all,have fun!
 
