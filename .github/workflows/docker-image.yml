@@ -33,7 +33,7 @@ jobs:
         context: .
         file: ./base/Dockerfile
         push: true
-        tags: "chao123/someip-base:lastest"
+        tags: "chao123/someip-base:latest"
 
     - name: Build and push someip-CORE Docker image
       uses: docker/build-push-action@v5
@@ -41,7 +41,7 @@ jobs:
         context: .
         file: ./someip-core/Dockerfile
         push: true
-        tags: "chao123/someip-core:lastest"
+        tags: "chao123/someip-core:latest"
 
     - name: Build and push someip-USER Docker image
       uses: docker/build-push-action@v5
@@ -49,5 +49,5 @@ jobs:
         context: .
         file: ./someip/Dockerfile
         push: true
-        tags: "chao123/someip:lastest"
+        tags: "chao123/someip:latest"
         
