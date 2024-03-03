@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main","soa_ecu" ]
+    branches: [ "main","pb-sip" ]
   pull_request:
     branches: [ "main" ]
 
@@ -27,27 +27,12 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Build and push someip-BASE Docker image
+    - name: Build and push pb-sip Docker image
       uses: docker/build-push-action@v5
       with:
         context: .
-        file: ./base/Dockerfile
+        file: ./protoc-someip-core/Dockerfile
         push: true
-        tags: "chao123/someip-base:latest"
+        tags: "chao123/pb-sip:latest"
 
-    - name: Build and push someip-CORE Docker image
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        file: ./someip-core/Dockerfile
-        push: true
-        tags: "chao123/someip-core:latest"
-
-    - name: Build and push someip-USER Docker image
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        file: ./someip/Dockerfile
-        push: true
-        tags: "chao123/someip:latest"
         
