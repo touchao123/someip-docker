@@ -1,10 +1,11 @@
-# Tailored from https://github.com/sunsolve/dbuild.git
-# Just kept the someip part and removed CommonAPI.
+
 
 
 docker build -t chao123/someip-base  someip-base
+
 docker build -t chao123/someip-core  someip-core
-docker build -t chao123/someip someip
 
 
 docker build -t chao123/pb-sip protoc-someip-core
+
+docker build -t chao123/someip-stack someip

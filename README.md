@@ -12,6 +12,15 @@
 This project is a someip dockerized template that you can customize to your needs.
 You can either use it for testing the protocal you like or develop the upon application. 
 
+### Stacks layout
+
+*   someip-stack        | => Interactive layer with user.
+*   ... other stack     | => Others based the lower layer 'pb-sip'.
+*   pb-sip              | => Add protocolBuffer basing on 'someip-core'.
+*   someip-core         | => Resopnsible for compling the vsomeip stack.
+*   someip-base         | => This is lowest layer for providing development tools of build-essential, 
+                        |       cmake, git etc. which supporing the higher level's compiling.
+
 ## Getting Started
 
 So how do you get this template to work for your project? It is easier than you think.

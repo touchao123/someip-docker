@@ -1,4 +1,4 @@
-FROM chao123/someip-core
+FROM chao123/pb-sip:latest
 
 ARG USERNAME=someip
 ARG PASSWORD=someip
