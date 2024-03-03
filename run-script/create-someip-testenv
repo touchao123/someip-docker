@@ -9,8 +9,8 @@
 # Client Container: 
 #     Container name = s2
 #     Host name      = vclient-s2
-#     Ssh  port map  = 3033
+#     Ssh  port map  = 2024
 #
 
-docker run -d --hostname=vservice-s1 --name=s1  -p 2022:22  chao123/someip
-docker run -d --hostname=vclient-s2 --name=s2  -p 2024:22  chao123/someip
+docker run -d --hostname=vservice-s1 --name=s1  -p 2022:22  chao123/someip-stack
+docker run -d --hostname=vclient-s2 --name=s2  -p 2024:22  chao123/someip-stack
