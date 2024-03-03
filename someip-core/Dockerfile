@@ -1,15 +1,19 @@
 FROM chao123/someip-base
-# FROM chao123/ngxquic:latest
 
-RUN  mkdir -p /root/vsomeip-build
-RUN cd /root/vsomeip-build && \
-    # git clone https://github.com/COVESA/capicxx-core-runtime.git && \
-    # git clone https://github.com/COVESA/capicxx-core-tools.git && \
-    # git clone https://github.com/COVESA/capicxx-someip-runtime.git && \
-    # git clone https://github.com/COVESA/capicxx-someip-tools.git && \
-    git clone https://github.com/COVESA/vsomeip.git
+ARG USERNAME=someip
+ARG PASSWORD=someip
+
+RUN groupadd someip
+RUN useradd -d /home/$USERNAME -ms /bin/bash -g someip -G sudo $USERNAME
+
+RUN  mkdir -p /home/someip/vsomeip-build
+RUN cd /home/someip/vsomeip-build && \
+    git clone https://github.com/COVESA/vsomeip.git && \
+    cd vsomeip && \
+    git checkout 3.1.20.3 && \
+    rm -rf build && mkdir -p build && cd build && \
+    cmake -D ENABLE_SIGNAL_HANDLING=1 -D CMAKE_INSTALL_PREFIX=/usr .. && \
+    make -j4 && make install && \
+    cd ../..
 
 
-# COPY vsomeip /root/vsomeip-build/vsomeip/
-COPY someip-core/build-someip-core.sh /root/vsomeip-build/
-RUN cd /root/vsomeip-build && sh ./build-someip-core.sh
