@@ -9,4 +9,5 @@ RUN cd /home/someip/protocolbuf && \
     cmake -B build -DCMAKE_CXX_STANDARD=14 &&\
     cmake --build build --parallel 4 && \
     make install -C build && \
+    rm build -rf && \
     cd ../..

@@ -14,8 +14,10 @@ RUN cd /home/someip/vsomeip-build && \
     cd vsomeip && \
     git checkout 3.1.20.3 && \
     rm -rf build && mkdir -p build && cd build && \
-    cmake -D ENABLE_SIGNAL_HANDLING=1 -D CMAKE_INSTALL_PREFIX=/usr .. && \
-    make -j4 && make install && \
+    cmake -B build -D ENABLE_SIGNAL_HANDLING=1 -D CMAKE_INSTALL_PREFIX=/usr .. && \
+    cmake --build build --parallel 4 && \
+    make install -C build && \
+    rm -rf build && \
     cd ../..
 
 
