@@ -6,7 +6,9 @@ ARG PASSWORD=someip
 RUN groupadd someip
 RUN useradd -d /home/$USERNAME -ms /bin/bash -g someip -G sudo $USERNAME
 
-RUN  mkdir -p /home/someip/vsomeip-build
+RUN echo "$USERNAME:$PASSWORD" | chpasswd
+
+RUN mkdir -p /home/someip/vsomeip-build
 RUN cd /home/someip/vsomeip-build && \
     git clone https://github.com/COVESA/vsomeip.git && \
     cd vsomeip && \

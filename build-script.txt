@@ -2,6 +2,9 @@
 # Just kept the someip part and removed CommonAPI.
 
 
-docker build -t chao123/someip-base . 
-docker build -t chao123/someip-core . 
-docker build -t chao123/someip . 
+docker build -t chao123/someip-base  someip-base
+docker build -t chao123/someip-core  someip-core
+docker build -t chao123/someip someip
+
+
+docker build -t chao123/pb-sip protoc-someip-core

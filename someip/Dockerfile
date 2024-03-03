@@ -24,7 +24,7 @@ RUN apt-get clean && \
 
 
 RUN chown -R $USERNAME: /home/$USERNAME
-RUN echo "$USERNAME:$PASSWORD" | chpasswd
+# RUN echo "$USERNAME:$PASSWORD" | chpasswd
 
 EXPOSE 22
 CMD  ["/usr/sbin/sshd", "-D"]
