@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main","soa_ecu" ]
+    branches: [ "main","dev" ]
   pull_request:
     branches: [ "main" ]
 
@@ -31,7 +31,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: .
-        file: ./base/Dockerfile
+        file: ./someip-base/Dockerfile
         push: true
         tags: "chao123/someip-base:latest"
 
@@ -42,12 +42,20 @@ jobs:
         file: ./someip-core/Dockerfile
         push: true
         tags: "chao123/someip-core:latest"
-
-    - name: Build and push someip-USER Docker image
+        
+    - name: Build and push pb-sip Docker image
       uses: docker/build-push-action@v5
       with:
         context: .
-        file: ./someip/Dockerfile
+        file: ./protoc-someip-core/Dockerfile
         push: true
-        tags: "chao123/someip:latest"
+        tags: "chao123/pb-sip:latest"
+
+    - name: Build and push stack Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./someip-stack/Dockerfile
+        push: true
+        tags: "chao123/someip-stack:latest"  
         

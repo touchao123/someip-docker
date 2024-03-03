@@ -1,4 +1,4 @@
-FROM chao123/someip-core
+FROM chao123/pb-sip:latest
 
 ARG USERNAME=someip
 ARG PASSWORD=someip
@@ -24,7 +24,7 @@ RUN apt-get clean && \
 
 
 RUN chown -R $USERNAME: /home/$USERNAME
-RUN echo "$USERNAME:$PASSWORD" | chpasswd
+# RUN echo "$USERNAME:$PASSWORD" | chpasswd
 
 EXPOSE 22
 CMD  ["/usr/sbin/sshd", "-D"]
