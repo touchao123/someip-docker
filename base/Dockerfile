@@ -28,6 +28,7 @@ RUN apt-get install -y unzip && \
 RUN apt-get install -y  \
 		       git  \
 		       build-essential \
+			   pkg-config \
 		       locales 
 
 RUN locale-gen en_US.UTF-8

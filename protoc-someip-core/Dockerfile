@@ -8,5 +8,5 @@ RUN cd /home/someip/protocolbuf && \
     git submodule update --init --recursive && \
     cmake -B build -DCMAKE_CXX_STANDARD=14 &&\
     cmake --build build --parallel 4 && \
-    make install && \
+    make install -C build && \
     cd ../..
