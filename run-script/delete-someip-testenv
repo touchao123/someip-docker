@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "You are trying to delete SOME/IP testing container s1 & s2... "
+echo "You are trying to delete testing container vcm & cccm... "
 
 ANS=no
 
@@ -10,8 +10,8 @@ if [ $ANS != 'yes' ]
 then
 	echo "Cancel...."
 else
-	docker rm -f s1
-	docker rm -f s2
+	docker rm -f vcm
+	docker rm -f cccm
 	echo "Deleting........done"
 fi
 

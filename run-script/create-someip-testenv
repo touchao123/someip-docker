@@ -1,16 +1,16 @@
 #!/bin/bash
 # Create two container, one for server, another for client
 #
-# Server Container:
-#     Container name = v1
-#     Host name      = vm-s1
+# CCCM Container:
+#     Container name = cccm
+#     Host name      = vm-cccm
 #     Ssh  port map  = 2022
 
-# Client Container: 
-#     Container name = c2
-#     Host name      = cm-s2
+# VCM Container: 
+#     Container name = vcm
+#     Host name      = cm-vcm
 #     Ssh  port map  = 2024
 #
 
-docker run -d --hostname=vm-s1 --name=v1  -p 2022:22  chao123/soa-ecu
-docker run -d --hostname=cm-s2 --name=c2  -p 2024:22  chao123/soa-ecu
+docker run -d --hostname=vm-vcm --name=vcm  -p 2022:22  chao123/soa-ecu
+docker run -d --hostname=vm-cccm --name=cccm  -p 2024:22  chao123/soa-ecu
