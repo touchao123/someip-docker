@@ -2,15 +2,15 @@
 # Create two container, one for server, another for client
 #
 # Server Container:
-#     Container name = s1
-#     Host name      = vservice-s1
+#     Container name = v1
+#     Host name      = vm-s1
 #     Ssh  port map  = 2022
 
 # Client Container: 
-#     Container name = s2
-#     Host name      = vclient-s2
+#     Container name = c2
+#     Host name      = cm-s2
 #     Ssh  port map  = 2024
 #
 
-docker run -d --hostname=vservice-s1 --name=s1  -p 2022:22  chao123/someip-stack
-docker run -d --hostname=vclient-s2 --name=s2  -p 2024:22  chao123/someip-stack
+docker run -d --hostname=vm-s1 --name=v1  -p 2022:22  chao123/soa-ecu
+docker run -d --hostname=cm-s2 --name=c2  -p 2024:22  chao123/soa-ecu
