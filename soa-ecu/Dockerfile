@@ -56,7 +56,7 @@ ENV VERSION=1.6.15 \
     LWS_SHA256=842da21f73ccba2be59e680de10a8cce7928313048750eb6ad73b6fa50763c51
 
 RUN set -x && \
-    apk --no-cache add --virtual build-deps \
+    apt-get install \
         build-base \
         cmake \
         gnupg \
@@ -131,9 +131,8 @@ RUN set -x && \
     install -Dm644 /build/mosq/epl-v10 /usr/share/licenses/mosquitto/epl-v10 && \
     install -Dm644 /build/mosq/edl-v10 /usr/share/licenses/mosquitto/edl-v10 && \
     chown -R mosquitto:mosquitto /mosquitto && \
-    apk --no-cache add \
+    apt-get install \
         ca-certificates && \
-    apk del build-deps && \
     rm -rf /build
 
 RUN mkdir -p /var/run/sshd
