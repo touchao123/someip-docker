@@ -10,7 +10,9 @@ RUN echo "$USERNAME:$PASSWORD" | chpasswd
 
 RUN apt-get -y install \
     boxes \
-    cowsay fortune
+    cowsay \
+    fortune \
+    openssh-server 
 
 RUN echo "\n  \
 export PS1='\[\e[32;7m\][\u@\h \w]\$ \[\e[m\]' \n\
@@ -32,6 +34,7 @@ RUN cd /home/someip/protocolbuf && \
     cmake -B build -DCMAKE_CXX_STANDARD=14 &&\
     cmake --build build --parallel $(nproc) && \
     make install -C build && \
+    chown -R ${USERNAME}:${USERNAME}  && \
     rm build -rf && \
     cd ../..
 
@@ -40,10 +43,10 @@ RUN cd /home/someip/vsomeip-build && \
     git clone https://github.com/COVESA/vsomeip.git && \
     cd vsomeip && \
     git checkout 3.1.20.3 && \
-    rm -rf build && mkdir -p build && cd build && \
-    cmake -B build -D ENABLE_SIGNAL_HANDLING=1 -D CMAKE_INSTALL_PREFIX=/usr .. && \
+    cmake -B build -D ENABLE_SIGNAL_HANDLING=1 -D CMAKE_INSTALL_PREFIX=/usr && \
     cmake --build build --parallel $(nproc) && \
     make install -C build && \
+    chown -R ${USERNAME}:${USERNAME} && \
     rm -rf build && \
     cd ../..
 
