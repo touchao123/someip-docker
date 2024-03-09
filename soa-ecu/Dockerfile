@@ -25,28 +25,29 @@ echo -e \n\
 cd ~ " \
 >> /home/$USERNAME/.bashrc
 
-
-RUN mkdir -p /home/someip/protocolbuf
-RUN cd /home/someip/protocolbuf && \
+ARG PB_BUILD=/home/someip/protocolbuf
+RUN mkdir -p ${PB_BUILD}
+RUN cd ${PB_BUILD} && \
     git clone https://github.com/protocolbuffers/protobuf.git && \
     cd protobuf && \
     git submodule update --init --recursive && \
     cmake -B build -DCMAKE_CXX_STANDARD=14 &&\
     cmake --build build --parallel $(nproc) && \
     make install -C build && \
-    chown -R ${USERNAME}:${USERNAME}  && \
+    chown -R ${USERNAME}:${USERNAME} ${PB_BUILD}  && \
     rm build -rf && \
     cd ../..
 
-RUN mkdir -p /home/someip/vsomeip-build
-RUN cd /home/someip/vsomeip-build && \
+ARG SIP_BUILD=/home/someip/vsomeip-build
+RUN mkdir -p ${SIP_BUILD}
+RUN cd ${SIP_BUILD} && \
     git clone https://github.com/COVESA/vsomeip.git && \
     cd vsomeip && \
     git checkout 3.1.20.3 && \
     cmake -B build -D ENABLE_SIGNAL_HANDLING=1 -D CMAKE_INSTALL_PREFIX=/usr && \
     cmake --build build --parallel $(nproc) && \
     make install -C build && \
-    chown -R ${USERNAME}:${USERNAME} && \
+    chown -R ${USERNAME}:${USERNAME} ${SIP_BUILD}  && \
     rm -rf build && \
     cd ../..
 
