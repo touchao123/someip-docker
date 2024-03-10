@@ -1,0 +1,18 @@
+
+// [START declaration]
+syntax = "proto3";
+//package tutorial;
+
+// [START messages]
+message V2X_DEMO_MSG {
+  string name = 1;
+  int32 id = 2;  // Unique ID number for this person.
+  float velocity = 3;
+  float acc = 4;
+  float head = 5;
+
+  uint64 timestamp = 6;
+ // google.protobuf.Timestamp last_updated = 5;
+}
+
+// [END messages]

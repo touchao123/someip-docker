@@ -31,7 +31,7 @@ RUN cd ${PB_BUILD} && \
     git clone https://github.com/protocolbuffers/protobuf.git && \
     cd protobuf && \
     git submodule update --init --recursive && \
-    cmake -B build -DCMAKE_CXX_STANDARD=14 &&\
+    cmake -B build -DCMAKE_CXX_STANDARD=14  -D CMAKE_INSTALL_PREFIX=/usr &&\
     cmake --build build --parallel $(nproc) && \
     make install -C build && \
     chown -R ${USERNAME}:${USERNAME} ${PB_BUILD}  && \
