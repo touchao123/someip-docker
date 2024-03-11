@@ -4,8 +4,8 @@ ARG USERNAME=someip
 ARG PASSWORD=someip
 
 RUN groupadd $USERNAME
-RUN useradd -d /home/$USERNAME -ms /bin/bash -g someip -G sudo $USERNAME
-RUN echo "$USERNAME:$PASSWORD" | chpasswd
+RUN useradd -d /home/$USERNAME -ms /bin/bash -g $USERNAME -G sudo $USERNAME
+RUN chown -R $USERNAME: /home/$USERNAMERUN echo "$USERNAME:$PASSWORD" | chpasswd
 
 
 RUN apt-get -y install \
@@ -25,6 +25,7 @@ echo -e \n\
 cd ~ " \
 >> /home/$USERNAME/.bashrc
 
+# Compiling protocolbuf with lazy installment
 ARG PB_BUILD=/home/someip/protocolbuf
 RUN mkdir -p ${PB_BUILD}
 RUN cd ${PB_BUILD} && \
@@ -38,6 +39,7 @@ RUN cd ${PB_BUILD} && \
     rm build -rf && \
     cd ../..
 
+# Compiling vsomeip with lazy installment
 ARG SIP_BUILD=/home/someip/vsomeip-build
 RUN mkdir -p ${SIP_BUILD}
 RUN cd ${SIP_BUILD} && \
@@ -51,9 +53,10 @@ RUN cd ${SIP_BUILD} && \
     rm -rf build && \
     cd ../..
 
-
-
-# Compiling Mosquitto
+#   Mosquitto #
+# Compiling Mosquitto refer to 'https://github.com/eclipse/mosquitto/blob/master/docker/1.6-openssl/Dockerfile'
+# The scripts of CMD ["/usr/sbin/mosquitto", "-c", "/mosquitto/config/mosquitto.conf"] had removed since executing it never return.  
+#
 ENV VERSION=1.6.15 \
     DOWNLOAD_SHA256=5ff2271512f745bf1a451072cd3768a5daed71e90c5179fae12b049d6c02aa0f \
     GPG_KEYS=A0D6EEA1DCAE49A635A3B2F0779B22DFB3E717B7 \
@@ -124,6 +127,6 @@ RUN mkdir -p /var/run/sshd
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-
+EXPOSE 1883
 EXPOSE 22
 CMD  ["/usr/sbin/sshd", "-D"]
